@@ -1,0 +1,1 @@
+enum Provider { Facebook, Google }

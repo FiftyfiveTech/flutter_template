@@ -43,17 +43,10 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
-  cupertino_icons:
+  facebook_auth_package:
     dependency: "direct main"
     description:
-      name: cupertino_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
-  facebook_auth_package:
-    dependency: transitive
-    description:
-      path: "flutter_social_package/facebook_auth_package"
+      path: facebook_auth_package
       relative: true
     source: path
     version: "0.0.1"
@@ -132,13 +125,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.6.0+1"
-  flutter_social_package:
-    dependency: "direct main"
-    description:
-      path: flutter_social_package
-      relative: true
-    source: path
-    version: "0.0.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -150,9 +136,9 @@ packages:
     source: sdk
     version: "0.0.0"
   google_auth_package:
-    dependency: transitive
+    dependency: "direct main"
     description:
-      path: "flutter_social_package/google_auth_package"
+      path: google_auth_package
       relative: true
     source: path
     version: "0.0.1"
@@ -239,9 +225,9 @@ packages:
     source: sdk
     version: "0.0.99"
   social_auth_contract:
-    dependency: transitive
+    dependency: "direct dev"
     description:
-      path: "flutter_social_package/social_auth_contract"
+      path: social_auth_contract
       relative: true
     source: path
     version: "0.0.1"
