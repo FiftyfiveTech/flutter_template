@@ -1,79 +1,41 @@
 {
     "project_info": {
-        "project_number": "351701789656",
-        "firebase_url": "https://fiftyfivetech.firebaseio.com",
-        "project_id": "fiftyfivetech",
-        "storage_bucket": "fiftyfivetech.appspot.com"
+        "project_number": "185229574597",
+        "project_id": "flutterpackage-ca02f",
+        "storage_bucket": "flutterpackage-ca02f.appspot.com"
     },
     "client": [
         {
             "client_info": {
-                "mobilesdk_app_id": "1:351701789656:android:9d01a54fa0c94e583da0ad",
+                "mobilesdk_app_id": "1:185229574597:android:88420b471b34047fc00bac",
                 "android_client_info": {
-                    "package_name": "com.fiftyfive"
+                    "package_name": "com.fluttergoogledemo"
                 }
             },
             "oauth_client": [
                 {
-                    "client_id": "351701789656-34u2ouno6d4kf6ug80n9bt7pjfj68noi.apps.googleusercontent.com",
+                    "client_id": "185229574597-f131dnnmv7n96ictaej1mr9aa7bp2cog.apps.googleusercontent.com",
                     "client_type": 1,
                     "android_info": {
-                        "package_name": "com.fiftyfive",
-                        "certificate_hash": "cdec1e71e59facf4d45bdc233fcdf07acd044057"
+                        "package_name": "com.fluttergoogledemo",
+                        "certificate_hash": "76a30125cd1282b1a8b0a48d706ba753e829117b"
                     }
                 },
                 {
-                    "client_id": "351701789656-mplkfpj6cig81t6tru8drkve2hmhj565.apps.googleusercontent.com",
-                    "client_type": 1,
-                    "android_info": {
-                        "package_name": "com.fiftyfive",
-                        "certificate_hash": "59dc1803521f063c0944d52eda9f206c329ff3a5"
-                    }
-                },
-                {
-                    "client_id": "351701789656-po0rmskumdnj5krj7l0ceju8t52g2btm.apps.googleusercontent.com",
+                    "client_id": "185229574597-j6s18iigs597c8tkemcuopulp6kjl905.apps.googleusercontent.com",
                     "client_type": 3
                 }
             ],
             "api_key": [
                 {
-                    "current_key": "AIzaSyATGqa0R5XOK0LGJMPnh89_cEDbK2yk7PI"
+                    "current_key": "AIzaSyALP_Zl2wV1d5Z2TMDJu28JeUyxdofGF5E"
                 }
             ],
             "services": {
                 "appinvite_service": {
                     "other_platform_oauth_client": [
                         {
-                            "client_id": "351701789656-50ljjnt855u58d506kgniuefutdg614j.apps.googleusercontent.com",
-                            "client_type": 3
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "client_info": {
-                "mobilesdk_app_id": "1:351701789656:android:28db6649a1d3bf173da0ad",
-                "android_client_info": {
-                    "package_name": "com.fiftyfive.suraj"
-                }
-            },
-            "oauth_client": [
-                {
-                    "client_id": "351701789656-po0rmskumdnj5krj7l0ceju8t52g2btm.apps.googleusercontent.com",
-                    "client_type": 3
-                }
-            ],
-            "api_key": [
-                {
-                    "current_key": "AIzaSyATGqa0R5XOK0LGJMPnh89_cEDbK2yk7PI"
-                }
-            ],
-            "services": {
-                "appinvite_service": {
-                    "other_platform_oauth_client": [
-                        {
-                            "client_id": "351701789656-50ljjnt855u58d506kgniuefutdg614j.apps.googleusercontent.com",
+                            "client_id": "185229574597-j6s18iigs597c8tkemcuopulp6kjl905.apps.googleusercontent.com",
                             "client_type": 3
                         }
                     ]

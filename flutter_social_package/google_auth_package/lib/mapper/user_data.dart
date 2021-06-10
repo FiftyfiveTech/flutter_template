@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:google_sign_in/google_sign_in.dart';
 
 class UserDataMapper {
@@ -16,7 +16,7 @@ class UserDataMapper {
         "userId": user.uid
       };
     } else {
-      throw ErrorDescription("Unable to get google user data");
+      throw Exception("Unable to get google user data");
     }
     return userDataMap;
   }
@@ -49,6 +49,7 @@ class UserDataMapper {
           await googleSignIn.signIn();
 
       if (googleSignInAccount != null) {
+        print("*******GoogleSignInAccount*********");
         final GoogleSignInAuthentication googleSignInAuthentication =
             await googleSignInAccount.authentication;
 
@@ -78,6 +79,8 @@ class UserDataMapper {
         } catch (e) {
           throw Exception("Firebase auth exception : $e}");
         }
+      } else {
+        print("*******GoogleSignInAccount NULL*********");
       }
     }
     return Future.value(userMap);

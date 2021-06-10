@@ -27,7 +27,7 @@ class SocialAuth extends SocialAuthFactory {
         }
 
       case Provider.Google:
-        Firebase.initializeApp();
+        // Firebase.initializeApp();
         Map<dynamic, dynamic> signInMap =
             await GoogleAuthServiceImpl().signInWithGoogle();
 
