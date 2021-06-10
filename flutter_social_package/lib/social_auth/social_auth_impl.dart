@@ -1,10 +1,11 @@
 import 'package:facebook_auth_package/auth/facebook_auth_impl.dart';
 import 'package:facebook_auth_package/user/user_impl.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_social_package/enums/social_provider.dart';
 import 'package:flutter_social_package/flutter_social_package.dart';
 import 'package:flutter_social_package/model/login_result.dart';
-import 'package:google_auth_package/auth/google_auth_impl.dart';
+import 'package:flutter_social_package/model/user_picture.dart';
+import 'package:flutter_social_package/model/user_profile.dart';
+import 'package:google_auth_package/auth/google_auth_service_impl.dart';
 
 class SocialAuth extends SocialAuthFactory {
   Provider provider;
@@ -18,21 +19,19 @@ class SocialAuth extends SocialAuthFactory {
         Map<dynamic, dynamic> signInMap =
             await FacebookAuthServiceImpl().signInWithFacebook();
         if (signInMap.isNotEmpty) {
-          print("Logged in successfully - > ${signInMap.toString()}");
-          return await getLoginDetails(signInMap);
+          return await _getLoginDetails(signInMap);
         } else {
-          throw ErrorDescription("Unable to login user");
+          throw Exception("Unable to login user");
         }
 
       case Provider.Google:
         Map<dynamic, dynamic> signInMap =
-            await GoogleAuthImpl().signInWithGoogle();
+            await GoogleAuthServiceImpl().signInWithGoogle();
 
         if (signInMap.isNotEmpty) {
-          print("Logged in successfully - > ${signInMap.toString()}");
-          return await getGoogleLoginResult(signInMap);
+          return await _getGoogleLoginResult(signInMap);
         } else {
-          throw ErrorDescription("Unable to login user");
+          throw Exception("Unable to login user");
         }
 
       default:
@@ -41,14 +40,15 @@ class SocialAuth extends SocialAuthFactory {
   }
 
   @override
-  Future<Map<String, dynamic>?> getUserData() async {
+  Future<UserProfile?> getUserData() async {
     switch (provider) {
       case Provider.Facebook:
         Map<dynamic, dynamic> userDataMap = await User().getFacebookUser();
         if (userDataMap.isNotEmpty) {
           print("User data found -> ${userDataMap.toString()}");
+          return await _getUserProfile(userDataMap);
         } else {
-          throw ErrorDescription("Unable to get user");
+          throw Exception("Unable to get user");
         }
         break;
 
@@ -57,7 +57,7 @@ class SocialAuth extends SocialAuthFactory {
         if (userDataMap.isNotEmpty) {
           print("User data found -> ${userDataMap.toString()}");
         } else {
-          throw ErrorDescription("Unable to get user");
+          throw Exception("Unable to get user");
         }
         break;
       default:
@@ -69,7 +69,7 @@ class SocialAuth extends SocialAuthFactory {
   @override
   Future<void> logOut() async {}
 
-  Future<LoginResult?> getLoginDetails(Map signInMap) async {
+  Future<LoginResult?> _getLoginDetails(Map signInMap) async {
     if (signInMap.containsKey("status")) {
       print("Login Status ---> ${signInMap["status"]}");
       if (signInMap["status"] == "success") {
@@ -100,7 +100,7 @@ class SocialAuth extends SocialAuthFactory {
     }
   }
 
-  Future<LoginResult?> getGoogleLoginResult(
+  Future<LoginResult?> _getGoogleLoginResult(
       Map<dynamic, dynamic> signInMap) async {
     if (signInMap.containsKey("status")) {
       print("Login Status ---> ${signInMap["status"]}");
@@ -113,5 +113,16 @@ class SocialAuth extends SocialAuthFactory {
         return Future.value(result);
       }
     }
+  }
+
+  Future<UserProfile?> _getUserProfile(Map userDataMap) {
+    UserProfile userProfile = UserProfile(
+      name: userDataMap["name"],
+      email: userDataMap["email"],
+      picture: userDataMap['picture'] is String
+          ? userDataMap['picture']
+          : Picture.fromJson(userDataMap['picture']).data?.url,
+    );
+    return Future.value(userProfile);
   }
 }

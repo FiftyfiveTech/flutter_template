@@ -4,7 +4,7 @@ import 'package:google_auth_package/mapper/user_data.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:social_auth_contract/auth/auth_service.dart';
 
-class GoogleAuthImpl implements AuthService {
+class GoogleAuthServiceImpl implements AuthService {
   @override
   Future<Map> signInWithGoogle() async {
     return await UserDataMapper().getUser();

@@ -5,7 +5,7 @@ class User implements UserService {
   Future<Map<dynamic, dynamic>> getFacebookUser() async {
     Map<dynamic, dynamic> userData = await FacebookAuth.instance.getUserData(
         fields: "name,email,"
-            "picture");
+            "picture.width(100)");
     return Future.value(userData);
   }
 

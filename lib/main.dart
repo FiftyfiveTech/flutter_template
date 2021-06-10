@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/pages/social_page.dart';
 import 'package:flutter_template/theme/config.dart';
 import 'package:flutter_template/theme/custom_theme.dart';
 
@@ -7,7 +8,8 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}): super(key: key);
+  const MyApp({Key? key}) : super(key: key);
+
   //1
   @override
   _MyAppState createState() => _MyAppState();
@@ -26,10 +28,24 @@ class _MyAppState extends State {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Knight and Day',
-      home: MyHomePage(title: 'Flutter template',),
+      home: MyHomePage(
+        title: 'Flutter template',
+      ),
       theme: CustomTheme.lightTheme,
       darkTheme: CustomTheme.darkTheme,
       themeMode: currentTheme.currentTheme,
+      initialRoute: '/',
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case SocialPage.routeName:
+            return MaterialPageRoute(builder: (context) {
+              return SocialPage();
+            });
+
+          default:
+            return null;
+        }
+      },
     );
   }
 }
@@ -108,6 +124,15 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            TextButton(
+              child: Text("Social SignIn"),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  SocialPage.routeName,
+                );
+              },
+            )
           ],
         ),
       ),
