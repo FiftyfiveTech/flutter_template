@@ -1,0 +1,85 @@
+{
+    "project_info": {
+        "project_number": "351701789656",
+        "firebase_url": "https://fiftyfivetech.firebaseio.com",
+        "project_id": "fiftyfivetech",
+        "storage_bucket": "fiftyfivetech.appspot.com"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:351701789656:android:9d01a54fa0c94e583da0ad",
+                "android_client_info": {
+                    "package_name": "com.fiftyfive"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "351701789656-34u2ouno6d4kf6ug80n9bt7pjfj68noi.apps.googleusercontent.com",
+                    "client_type": 1,
+                    "android_info": {
+                        "package_name": "com.fiftyfive",
+                        "certificate_hash": "cdec1e71e59facf4d45bdc233fcdf07acd044057"
+                    }
+                },
+                {
+                    "client_id": "351701789656-mplkfpj6cig81t6tru8drkve2hmhj565.apps.googleusercontent.com",
+                    "client_type": 1,
+                    "android_info": {
+                        "package_name": "com.fiftyfive",
+                        "certificate_hash": "59dc1803521f063c0944d52eda9f206c329ff3a5"
+                    }
+                },
+                {
+                    "client_id": "351701789656-po0rmskumdnj5krj7l0ceju8t52g2btm.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyATGqa0R5XOK0LGJMPnh89_cEDbK2yk7PI"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "351701789656-50ljjnt855u58d506kgniuefutdg614j.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:351701789656:android:28db6649a1d3bf173da0ad",
+                "android_client_info": {
+                    "package_name": "com.fiftyfive.suraj"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "351701789656-po0rmskumdnj5krj7l0ceju8t52g2btm.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyATGqa0R5XOK0LGJMPnh89_cEDbK2yk7PI"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "351701789656-50ljjnt855u58d506kgniuefutdg614j.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}

@@ -5,7 +5,9 @@ import 'package:flutter_social_package/flutter_social_package.dart';
 import 'package:flutter_social_package/model/login_result.dart';
 import 'package:flutter_social_package/model/user_picture.dart';
 import 'package:flutter_social_package/model/user_profile.dart';
+import 'package:flutter_social_package/social_auth.dart';
 import 'package:google_auth_package/auth/google_auth_service_impl.dart';
+import 'package:google_auth_package/user/user_impl.dart';
 
 class SocialAuth extends SocialAuthFactory {
   Provider provider;
@@ -25,6 +27,7 @@ class SocialAuth extends SocialAuthFactory {
         }
 
       case Provider.Google:
+        Firebase.initializeApp();
         Map<dynamic, dynamic> signInMap =
             await GoogleAuthServiceImpl().signInWithGoogle();
 
@@ -43,7 +46,8 @@ class SocialAuth extends SocialAuthFactory {
   Future<UserProfile?> getUserData() async {
     switch (provider) {
       case Provider.Facebook:
-        Map<dynamic, dynamic> userDataMap = await User().getFacebookUser();
+        Map<dynamic, dynamic> userDataMap =
+            await FacebookUserImpl().getFacebookUser();
         if (userDataMap.isNotEmpty) {
           print("User data found -> ${userDataMap.toString()}");
           return await _getUserProfile(userDataMap);
@@ -53,9 +57,11 @@ class SocialAuth extends SocialAuthFactory {
         break;
 
       case Provider.Google:
-        Map<dynamic, dynamic> userDataMap = await User().getGoogleUser();
+        Map<dynamic, dynamic> userDataMap =
+            await GoogleUserImpl().getGoogleUser();
         if (userDataMap.isNotEmpty) {
           print("User data found -> ${userDataMap.toString()}");
+          return await _getGoogleUserProfile(userDataMap);
         } else {
           throw Exception("Unable to get user");
         }
@@ -122,6 +128,15 @@ class SocialAuth extends SocialAuthFactory {
       picture: userDataMap['picture'] is String
           ? userDataMap['picture']
           : Picture.fromJson(userDataMap['picture']).data?.url,
+    );
+    return Future.value(userProfile);
+  }
+
+  Future<UserProfile?> _getGoogleUserProfile(Map userDataMap) {
+    UserProfile userProfile = UserProfile(
+      name: userDataMap["name"],
+      email: userDataMap["email"],
+      picture: userDataMap['picture'],
     );
     return Future.value(userProfile);
   }

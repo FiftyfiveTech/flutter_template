@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_social_package/avatar/avatar_letter.dart';
 import 'package:flutter_social_package/enums/social_provider.dart';
@@ -18,6 +19,12 @@ class _SocialPageState extends State<SocialPage> {
   String? picture = "";
 
   @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp();
+  }
+
+  @override
   Widget build(BuildContext context) {
     if (facebookUser != null) {
       userName = facebookUser!.name;
@@ -34,40 +41,40 @@ class _SocialPageState extends State<SocialPage> {
                 children: [
                   picture != null && picture!.isNotEmpty
                       ? ClipRRect(
-                          borderRadius: BorderRadius.circular(50.0),
-                          child: FadeInImage.assetNetwork(
-                            placeholder: "assets/icon/user_avatar.png",
-                            image: picture!,
-                            width: 100,
-                            height: 100,
-                            imageErrorBuilder: (BuildContext context, Object y,
-                                StackTrace? z) {
-                              if (userName != null && userName!.isNotEmpty) {
-                                return AvatarLetter(
-                                  backgroundColor: Colors.blue,
-                                  textColor: Colors.white,
-                                  fontSize: 16,
-                                  upperCase: true,
-                                  numberLetters: 2,
-                                  letterType: LetterType.Circular,
-                                  text: userName!,
-                                  backgroundColorHex: "#0000FF",
-                                  textColorHex: "#ffffff",
-                                );
-                              } else {
-                                return Container();
-                              }
-                            },
-                          ),
-                        )
+                    borderRadius: BorderRadius.circular(50.0),
+                    child: FadeInImage.assetNetwork(
+                      placeholder: "assets/icon/user_avatar.png",
+                      image: picture!,
+                      width: 100,
+                      height: 100,
+                      imageErrorBuilder: (BuildContext context, Object y,
+                          StackTrace? z) {
+                        if (userName != null && userName!.isNotEmpty) {
+                          return AvatarLetter(
+                            backgroundColor: Colors.blue,
+                            textColor: Colors.white,
+                            fontSize: 16,
+                            upperCase: true,
+                            numberLetters: 2,
+                            letterType: LetterType.Circular,
+                            text: userName!,
+                            backgroundColorHex: "#0000FF",
+                            textColorHex: "#ffffff",
+                          );
+                        } else {
+                          return Container();
+                        }
+                      },
+                    ),
+                  )
                       : ClipRRect(
-                          borderRadius: BorderRadius.circular(100.0),
-                          child: Image.asset(
-                            "assets/icon/user_avatar.png",
-                            height: 90.0,
-                            width: 90.0,
-                          ),
-                        ),
+                    borderRadius: BorderRadius.circular(100.0),
+                    child: Image.asset(
+                      "assets/icon/user_avatar.png",
+                      height: 90.0,
+                      width: 90.0,
+                    ),
+                  ),
                   Container(
                     margin: EdgeInsets.only(left: 10, top: 10),
                     child: Text(
@@ -123,7 +130,9 @@ class _SocialPageState extends State<SocialPage> {
                   Container(
                     margin: EdgeInsets.only(top: 20),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        _handleSocialSignIn(Provider.Google);
+                      },
                       child: Container(
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
@@ -171,14 +180,14 @@ class _SocialPageState extends State<SocialPage> {
 
   _handleSocialSignIn(Provider provider) async {
     SocialAuth(provider: provider).signInUser().then((LoginResult? value) => {
-          if (value != null)
-            {
-              SocialAuth(provider: provider).getUserData().then((userData) => {
-                    setState(() {
-                      facebookUser = userData;
-                    })
-                  })
-            }
-        });
+      if (value != null)
+        {
+          SocialAuth(provider: provider).getUserData().then((userData) => {
+            setState(() {
+              facebookUser = userData;
+            })
+          })
+        }
+    });
   }
 }
