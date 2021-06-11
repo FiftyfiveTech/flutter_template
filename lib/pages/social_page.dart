@@ -5,6 +5,7 @@ import 'package:flutter_social_package/enums/social_provider.dart';
 import 'package:flutter_social_package/model/login_result.dart';
 import 'package:flutter_social_package/model/user_profile.dart';
 import 'package:flutter_social_package/social_auth/social_auth_impl.dart';
+import 'package:flutter_template/generated/l10n.dart';
 
 class SocialPage extends StatefulWidget {
   static const String routeName = '/social_login';
@@ -115,7 +116,7 @@ class _SocialPageState extends State<SocialPage> {
                                 ),
                               ),
                               Text(
-                                "Sign in with Facebook",
+                                S.of(context).sign_in_with_facebook,
                                 style: TextStyle(
                                   color: Colors.black54,
                                   fontWeight: FontWeight.bold,
@@ -157,7 +158,7 @@ class _SocialPageState extends State<SocialPage> {
                                 ),
                               ),
                               Text(
-                                "Sign in with Google",
+                                S.of(context).sign_in_with_google,
                                 style: TextStyle(
                                   color: Colors.black54,
                                   fontWeight: FontWeight.bold,

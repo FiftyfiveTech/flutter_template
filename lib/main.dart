@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/pages/social_page.dart';
+import 'package:flutter_template/settings/language_settings.dart';
 import 'package:flutter_template/theme/config.dart';
 import 'package:flutter_template/theme/custom_theme.dart';
+
+import 'generated/l10n.dart';
 
 void main() {
   runApp(MyApp());
@@ -42,10 +46,23 @@ class _MyAppState extends State {
               return SocialPage();
             });
 
+          case LanguageSettings.routeName:
+            return MaterialPageRoute(builder: (context) {
+              return LanguageSettings();
+            });
           default:
             return null;
         }
       },
+      localizationsDelegates: [
+        S.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate
+      ],
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('sv', 'SV'),
+      ],
     );
   }
 }
@@ -118,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              "You have pushed the button this many times:",
             ),
             Text(
               '$_counter',
@@ -130,6 +147,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.pushNamed(
                   context,
                   SocialPage.routeName,
+                );
+              },
+            ),
+            TextButton(
+              child: Text("Language Settings"),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  LanguageSettings.routeName,
                 );
               },
             )

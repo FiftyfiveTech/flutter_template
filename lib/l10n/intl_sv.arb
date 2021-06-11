@@ -1,0 +1,7 @@
+{
+    "@@locale": "sv",
+    "app_name": "Flutter Template Demo",
+    "sign_in_with_google": "Logga in med Google",
+    "sign_in_with_facebook": "Logga in med Facebook",
+    "choose_language": "Välj ett språk"
+}
