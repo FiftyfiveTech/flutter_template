@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/theme/config.dart';
-import 'package:flutter_template/theme/custom_theme.dart';
+import 'package:flutter_template/core/theme/config.dart';
+import 'package:flutter_template/core/theme/custom_theme.dart';
+import 'package:flutter_template/core/injection_container.dart' as DI;
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}): super(key: key);
-  //1
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -17,6 +18,8 @@ class _MyAppState extends State {
   @override
   void initState() {
     super.initState();
+    // To initialize the the dependency injection
+    DI.initLocator();
     currentTheme.addListener(() {
       setState(() {});
     });
@@ -25,8 +28,10 @@ class _MyAppState extends State {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Knight and Day',
-      home: MyHomePage(title: 'Flutter template',),
+      title: 'Template',
+      home: MyHomePage(
+        title: 'Flutter template',
+      ),
       theme: CustomTheme.lightTheme,
       darkTheme: CustomTheme.darkTheme,
       themeMode: currentTheme.currentTheme,
