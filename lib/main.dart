@@ -3,8 +3,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/notification/notification_manager.dart';
 import 'package:flutter_template/presentation/pages/settings/language_settings.dart';
 import 'package:flutter_template/presentation/pages/social/social_page.dart';
-import 'package:flutter_template/theme/config.dart';
-import 'package:flutter_template/theme/custom_theme.dart';
+import 'package:flutter_template/core/theme/config.dart';
+import 'package:flutter_template/core/theme/custom_theme.dart';
+import 'package:flutter_template/core/injection_container.dart' as DI;
 
 import 'generated/l10n.dart';
 
@@ -15,7 +16,6 @@ void main() {
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  //1
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -24,6 +24,8 @@ class _MyAppState extends State {
   @override
   void initState() {
     super.initState();
+    // To initialize the the dependency injection
+    DI.initLocator();
     currentTheme.addListener(() {
       setState(() {});
     });
@@ -32,7 +34,7 @@ class _MyAppState extends State {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Knight and Day',
+      title: 'Template',
       home: MyHomePage(
         title: 'Flutter template',
       ),
