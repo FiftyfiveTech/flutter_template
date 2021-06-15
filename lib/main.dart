@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_template/pages/social_page.dart';
-import 'package:flutter_template/settings/language_settings.dart';
+import 'package:flutter_template/notification/notification_manager.dart';
+import 'package:flutter_template/presentation/pages/settings/language_settings.dart';
+import 'package:flutter_template/presentation/pages/social/social_page.dart';
 import 'package:flutter_template/theme/config.dart';
 import 'package:flutter_template/theme/custom_theme.dart';
 
@@ -98,6 +99,13 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    NotificationManager().init().then(
+        (value) => {NotificationManager().listenFirebaseMessage(context)});
   }
 
   @override
