@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_template/app/auth/pages/social_page.dart';
-import 'package:flutter_template/app/settings/language_settings.dart';
+import 'package:flutter_template/app/bloc/auth/user_auth_bloc.dart';
+import 'package:flutter_template/app/pages/auth/social_page.dart';
+import 'package:flutter_template/app/pages/settings/language_settings.dart';
 import 'package:flutter_template/core/injection_container.dart' as DI;
 import 'package:flutter_template/core/theme/config.dart';
 import 'package:flutter_template/core/theme/custom_theme.dart';
@@ -9,7 +11,9 @@ import 'package:flutter_template/notification/notification_manager.dart';
 
 import 'generated/l10n.dart';
 
-void main() {
+void main() async {
+  // To initialize the the dependency injection
+  await DI.initLocator();
   runApp(MyApp());
 }
 
@@ -24,8 +28,6 @@ class _MyAppState extends State {
   @override
   void initState() {
     super.initState();
-    // To initialize the the dependency injection
-    DI.initLocator();
     currentTheme.addListener(() {
       setState(() {});
     });
@@ -33,39 +35,42 @@ class _MyAppState extends State {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Template',
-      home: MyHomePage(
-        title: 'Flutter template',
-      ),
-      theme: CustomTheme.lightTheme,
-      darkTheme: CustomTheme.darkTheme,
-      themeMode: currentTheme.currentTheme,
-      initialRoute: '/',
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case SocialPage.routeName:
-            return MaterialPageRoute(builder: (context) {
-              return SocialPage();
-            });
+    return BlocProvider<UserAuthBloc>(
+      create: (context) => DI.instance<UserAuthBloc>(),
+      child: MaterialApp(
+        title: 'Template',
+        home: MyHomePage(
+          title: 'Flutter template',
+        ),
+        theme: CustomTheme.lightTheme,
+        darkTheme: CustomTheme.darkTheme,
+        themeMode: currentTheme.currentTheme,
+        initialRoute: '/',
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case SocialPage.routeName:
+              return MaterialPageRoute(builder: (context) {
+                return SocialPage();
+              });
 
-          case LanguageSettings.routeName:
-            return MaterialPageRoute(builder: (context) {
-              return LanguageSettings();
-            });
-          default:
-            return null;
-        }
-      },
-      localizationsDelegates: [
-        S.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate
-      ],
-      supportedLocales: [
-        const Locale('en', 'US'),
-        const Locale('sv', 'SV'),
-      ],
+            case LanguageSettings.routeName:
+              return MaterialPageRoute(builder: (context) {
+                return LanguageSettings();
+              });
+            default:
+              return null;
+          }
+        },
+        localizationsDelegates: [
+          S.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate
+        ],
+        supportedLocales: [
+          const Locale('en', 'US'),
+          const Locale('sv', 'SV'),
+        ],
+      ),
     );
   }
 }
@@ -92,7 +97,6 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    currentTheme.toggleTheme();
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
@@ -167,6 +171,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   context,
                   LanguageSettings.routeName,
                 );
+              },
+            ),
+            TextButton(
+              child: Text("Switch Theme"),
+              onPressed: () {
+                currentTheme.toggleTheme();
               },
             )
           ],

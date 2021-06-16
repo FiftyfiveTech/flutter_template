@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/component/radio_group.dart';
+import 'package:flutter_template/app/widget/radio_group.dart';
 import 'package:flutter_template/generated/intl/messages_all.dart';
 import 'package:flutter_template/generated/l10n.dart';
 import 'package:intl/intl.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/app/auth/bloc/user_auth_events.dart';
-import 'package:flutter_template/app/auth/bloc/user_auth_state.dart';
-import 'package:flutter_template/domain/auth/authorization.dart';
+import 'package:flutter_template/domain/authorization.dart';
+import 'package:flutter_template/app/bloc/auth/user_auth_events.dart';
+import 'package:flutter_template/app/bloc/auth/user_auth_state.dart';
 
 class UserAuthBloc extends Bloc<UserAuthEvents, UserAuthState> {
   final SignInUserWithCredentials signInUserWithCredentials;

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 class CustomTheme with ChangeNotifier {
-  static bool _isDarkTheme = true;
+  static bool _isDarkTheme = false;
 
   ThemeMode get currentTheme => _isDarkTheme ? ThemeMode.dark : ThemeMode.light;
 
@@ -18,6 +18,13 @@ class CustomTheme with ChangeNotifier {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
         buttonColor: CustomColors.lightPurple,
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          textStyle: MaterialStateProperty.all(
+            TextStyle(color: Colors.blue),
+          ),
+        ),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
           foregroundColor: CustomColors.lightPurple, elevation: 2.0),
@@ -36,6 +43,13 @@ class CustomTheme with ChangeNotifier {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
         buttonColor: CustomColors.lightPurple,
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          textStyle: MaterialStateProperty.all(
+            TextStyle(color: Colors.white),
+          ),
+        ),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: CustomColors.purple,

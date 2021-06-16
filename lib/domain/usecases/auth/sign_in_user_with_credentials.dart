@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_template/core/error/failure.dart';
 import 'package:flutter_template/core/usecase.dart';
-import 'package:flutter_template/domain/auth/authorization.dart';
+import 'package:flutter_template/domain/authorization.dart';
 
 class SignInUserWithCredentials implements UseCase<bool, Params> {
   final UserAuthRepository _repository;

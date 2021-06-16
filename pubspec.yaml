@@ -42,7 +42,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_social_package:
-    path: "../FlutterTemplateProject/flutter_social_package"
+    path: "../flutter_template/flutter_social_package"
 
   #Locale configuration
   intl: ^0.17.0

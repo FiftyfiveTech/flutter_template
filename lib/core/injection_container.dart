@@ -1,6 +1,6 @@
-import 'package:flutter_template/app/auth/bloc/user_auth_bloc.dart';
+import 'package:flutter_template/app/bloc/auth/user_auth_bloc.dart';
 import 'package:flutter_template/data/authorization_impl.dart';
-import 'package:flutter_template/domain/auth/authorization.dart';
+import 'package:flutter_template/domain/authorization.dart';
 import 'package:get_it/get_it.dart';
 
 final instance = GetIt.instance;
