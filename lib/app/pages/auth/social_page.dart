@@ -9,7 +9,7 @@ import 'package:flutter_social_package/social_auth/social_auth_impl.dart';
 import 'package:flutter_template/app/bloc/auth/user_auth_bloc.dart';
 import 'package:flutter_template/app/bloc/auth/user_auth_events.dart';
 import 'package:flutter_template/app/bloc/auth/user_auth_state.dart';
-import 'package:flutter_template/core/util/ui_helpers.dart';
+import 'package:core/util/ui_helpers.dart';
 import 'package:flutter_template/generated/l10n.dart';
 
 class SocialPage extends StatefulWidget {

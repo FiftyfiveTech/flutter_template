@@ -4,9 +4,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/app/bloc/auth/user_auth_bloc.dart';
 import 'package:flutter_template/app/pages/auth/social_page.dart';
 import 'package:flutter_template/app/pages/settings/language_settings.dart';
-import 'package:flutter_template/core/injection_container.dart' as DI;
-import 'package:flutter_template/core/theme/config.dart';
-import 'package:flutter_template/core/theme/custom_theme.dart';
+import 'package:flutter_template/injection_container.dart' as DI;
+import 'package:core/theme/config.dart';
+import 'package:core/theme/custom_theme.dart';
 import 'package:flutter_template/notification/notification_manager.dart';
 
 import 'generated/l10n.dart';

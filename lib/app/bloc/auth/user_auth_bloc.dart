@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/domain/authorization.dart';
+import 'package:domain/authorization.dart';
 import 'package:flutter_template/app/bloc/auth/user_auth_events.dart';
 import 'package:flutter_template/app/bloc/auth/user_auth_state.dart';
 

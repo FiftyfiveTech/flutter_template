@@ -20,14 +20,10 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'sv';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function>{
-        "app_name":
-            MessageLookupByLibrary.simpleMessage("Flutter Template Demo"),
-        "choose_language":
-            MessageLookupByLibrary.simpleMessage("Välj ett språk"),
-        "sign_in_with_facebook":
-            MessageLookupByLibrary.simpleMessage("Logga in med Facebook"),
-        "sign_in_with_google":
-            MessageLookupByLibrary.simpleMessage("Logga in med Google")
-      };
+  static _notInlinedMessages(_) => <String, Function> {
+    "app_name" : MessageLookupByLibrary.simpleMessage("Flutter Template Demo"),
+    "choose_language" : MessageLookupByLibrary.simpleMessage("Välj ett språk"),
+    "sign_in_with_facebook" : MessageLookupByLibrary.simpleMessage("Logga in med Facebook"),
+    "sign_in_with_google" : MessageLookupByLibrary.simpleMessage("Logga in med Google")
+  };
 }
