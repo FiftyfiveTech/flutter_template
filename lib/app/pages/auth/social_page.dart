@@ -29,7 +29,11 @@ class _SocialPageState extends State<SocialPage> {
   @override
   void initState() {
     super.initState();
-    Firebase.initializeApp();
+    initializeFirebase();
+  }
+
+  Future initializeFirebase() async {
+    await Firebase.initializeApp();
   }
 
   @override
@@ -259,7 +263,7 @@ class _SocialPageState extends State<SocialPage> {
     );
   }
 
-  _loginWithCredentials() {
+  _loginWithCredentials() async{
     if (_userNameController.text.isNotEmpty &&
         _passwordController.text.isNotEmpty) {
       BlocProvider.of<UserAuthBloc>(context).add(
