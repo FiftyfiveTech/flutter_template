@@ -4,18 +4,20 @@ version: 0.0.1
 publish_to: 'none'
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0"
+  sdk: ">=2.17.6 <3.0.0"
+  flutter: ">=3.0.5"
 
 dependencies:
   flutter:
     sdk: flutter
   # Functional programming thingies
-  dartz: ^0.10.0-nullsafety.2
+  dartz: ^0.10.1
   # Value equality
-  equatable: ^2.0.2
+  equatable: ^2.0.5
   core:
     path: ../core
+  domain:
+    path: ../domain
 
 dev_dependencies:
   flutter_test:
