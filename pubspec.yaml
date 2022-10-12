@@ -28,7 +28,7 @@ dependencies:
   # Bloc for state management
   flutter_bloc: ^7.3.3
   # Remote API
-  connectivity: ^3.0.6
+  #connectivity: ^3.0.6
   http: ^0.13.5
   # Local cache
   shared_preferences: ^2.0.15
@@ -54,6 +54,10 @@ dependencies:
   #Firebase Messaging
   firebase_messaging: ^13.1.0
   firebase_core: ^1.24.0
+  flutter_riverpod: ^2.0.2
+  state_notifier: ^0.7.2+1
+  hooks_riverpod: ^2.0.2
+  
 
 dev_dependencies:
   flutter_test:
