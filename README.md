@@ -41,7 +41,7 @@ This projects follows clean architecture, for the best result and following sepa
 
 # The project is structured in the following way:
 
-
+~~~
 ├── .git
 ├── .gitignore
 ├── android
@@ -60,6 +60,7 @@ This projects follows clean architecture, for the best result and following sepa
 ├── pubspec.yaml
 ├── pubspec.lock
 └── README.md
+~~~
 
 ## License
 
