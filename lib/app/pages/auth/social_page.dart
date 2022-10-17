@@ -263,7 +263,7 @@ class _SocialPageState extends State<SocialPage> {
     );
   }
 
-  _loginWithCredentials() async{
+  _loginWithCredentials() async {
     if (_userNameController.text.isNotEmpty &&
         _passwordController.text.isNotEmpty) {
       BlocProvider.of<UserAuthBloc>(context).add(
