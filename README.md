@@ -37,7 +37,21 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 ## Architecture and Project structure
-This projects follows clean architecture, for the best result and following separation of concern we followed a combination of module and feature based layered architecture. The project is generally devided to different modules for each layer: Data module, Domain module, Presentation module, and also a core module for specific faetures like general error handling, themes and utilities, then for reusable features like social sign in it is managed as a separate module. The archirecture allows to define more plug & play modules whenever it is necessary without causing any side effects for future reusaibility and extensibility. 
+This projects follows clean architecture, we adopted layered architecture, to obtain clear separation of concerns between different part of the systems.  The architecture is based on the combined layer first and feature first architecture approach. Following the layered first principles the project is generally devided to different modules: Data module, Domain module, Presentation module, and following feature first appraoch more modules can be added as plug & play whenever it is necessary. The project now also have a Core module for specific faetures like general error handling, themes and utilities, and a social sign in module. This archirecture design give freedom to define more modules without causing any side effects for future reusaibility and extensibility. 
+
+# Data Layer
+This layer contains all the repositories to communnicate with local db or REST API's according to the interest of communication. The networks calls are handled here and converted to models. Data layer is responsible for data caching if needed.
+
+# Domain Layer
+Domain layer is present to abstract the complex business logics such as combination of various repository calls as well as different usecases that may be reused from various UI's. The services and usecases are defined in the domain layer.
+
+# Presentation Layer
+Presentation layer contains the UI's and it's states. Providers are defined in the presentation layer and it is separated from the UI managing the states. This is how the UI is separated free from the business implementation as well as stae management. 
+
+# Adding/developing a new Feature to the boilerplate
+All the UI Widgets, Controller should be added to the presentation layer, that lies inside the lib folder under the main project structure. Business logic is handled in the domain layer, and all the data communication happens in the data layer.
+
+
 
 # The project is structured in the following way:
 
@@ -48,7 +62,19 @@ This projects follows clean architecture, for the best result and following sepa
 ├── ios
 ├── core
 ├── data
+|  ├── lib
+|  |  ├── repository
+|  |  ├── services
+|
+|
 ├── domain
+|   ├── lib
+|   |  ├── usecases
+|   |  |  
+|   |  └─ services   
+|
+|
+|
 ├── flutter_social_package
 ├── lib
 |  ├── app
@@ -60,7 +86,17 @@ This projects follows clean architecture, for the best result and following sepa
 ├── pubspec.yaml
 ├── pubspec.lock
 └── README.md
+
 ~~~
+
+*/lib* - contains the presentation layer, the UI widgets, state management with riverpod and its provider files.
+
+*/lib/pages* - Here we add the highlevel widgets that contains the entire page design with multiple reused widgets.
+
+*/lib/widgets* - This folder contains the micro level base widgets that can be tested independently and reused across the application. If more then two pages need to use the any widget, then it should be moved to the widget folder.
+
+*/assets* - Saving images, files etc in src directory is a good solution and it is oftentimes encouraged to use instead of the static file serving. You need to store images in /assets folder.
+
 
 ## License
 
