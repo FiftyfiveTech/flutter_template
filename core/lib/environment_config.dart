@@ -5,5 +5,5 @@ class EnvironmentConfig {
       defaultValue: "https://image.tmdb.org/t/p/w185");
   static const API_KEY = String.fromEnvironment('API_KEY',
       //TODO add api key here
-      defaultValue: "YOUR-TMDB-API-KEY-HERE");
+      defaultValue: "66f6536aa8f5fb81f9be557ff7a68991");
 }

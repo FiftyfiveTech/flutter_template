@@ -64,13 +64,14 @@ All the UI Widgets, Controller should be added to the presentation layer, that l
 ├── data
 |  ├── lib
 |  |  ├── repository
-|  |  ├── services
+|  |  | ├── network
+|  |  | └─ local db 
+|  |  └─ firebase   
 |
 |
 ├── domain
 |   ├── lib
-|   |  ├── usecases
-|   |  |  
+|   |  ├── model
 |   |  └─ services   
 |
 |
