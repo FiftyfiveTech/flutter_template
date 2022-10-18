@@ -18,42 +18,34 @@
 - [Flutter](https://flutter.dev/) - an open source framework by Google for building beautiful, natively compiled, multi-platform applications from a single codebase.
 - [Riverpod](https://riverpod.dev/) - a reactive caching and data binding framework.
 - [Flutter Hooks](https://pub.dev/packages/flutter_hooks) - better lifecycle management and component (widget) reusability.
+- [Freezed](https://pub.dev/packages/freezed) -  code generator for data-classes/unions/pattern-matching/cloning.
+- [Flutter Lints](https://pub.dev/packages/flutter_lints) -  recommended set of lints for Flutter apps, packages, and plugins to encourage good coding practices.
 
-
-## Getting Started
+# Getting Started
 
 This project is a starting point for a Flutter application.
 
-*(explain about Combine Layered-Fearture Package architecture )
+*(explain about Combine Layered-Fearture Package architecture )*
 
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 
 ## Architecture and Project structure
 This projects follows clean architecture, we adopted layered architecture, to obtain clear separation of concerns between different part of the systems.  The architecture is based on the combined layer first and feature first architecture approach. Following the layered first principles the project is generally devided to different modules: Data module, Domain module, Presentation module, and following feature first appraoch more modules can be added as plug & play whenever it is necessary. The project now also have a Core module for specific faetures like general error handling, themes and utilities, and a social sign in module. This archirecture design give freedom to define more modules without causing any side effects for future reusaibility and extensibility. 
 
-# Data Layer
+### Data Layer
 This layer contains all the repositories to communnicate with local db or REST API's according to the interest of communication. The networks calls are handled here and converted to models. Data layer is responsible for data caching if needed.
 
-# Domain Layer
+### Domain Layer
 Domain layer is present to abstract the complex business logics such as combination of various repository calls as well as different usecases that may be reused from various UI's. The services and usecases are defined in the domain layer.
 
-# Presentation Layer
+### Presentation Layer
 Presentation layer contains the UI's and it's states. Providers are defined in the presentation layer and it is separated from the UI managing the states. This is how the UI is separated free from the business implementation as well as stae management. 
 
-# Adding/developing a new Feature to the boilerplate
+### Adding/developing a new Feature to the boilerplate
 All the UI Widgets, Controller should be added to the presentation layer, that lies inside the lib folder under the main project structure. Business logic is handled in the domain layer, and all the data communication happens in the data layer.
 
 
 
-# The project is structured in the following way:
+## The project is structured in the following way:
 
 ~~~
 ├── .git
