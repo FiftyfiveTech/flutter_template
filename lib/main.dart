@@ -2,11 +2,13 @@ import 'dart:developer';
 
 import 'package:core/theme/config.dart';
 import 'package:core/theme/custom_theme.dart';
+import 'package:domain/model/movie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/app/pages/auth/social_page.dart';
 import 'package:flutter_template/app/pages/settings/language_settings.dart';
+import 'package:flutter_template/app/viewmodel/movies_viewmodel.dart';
 import 'package:flutter_template/generated/l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,7 +19,7 @@ void main() {
   runApp(ProviderScope(child: MyApp()));
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends HookConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -64,6 +66,8 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final int counter = ref.watch(counterProvider);
+    var movie = ref.watch(moviesProvider);
+    final homeViewModel = ref.read(moviesViewModelProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -73,6 +77,32 @@ class HomePage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text(
+              "Movie Details:",
+            ),
+            Text(
+              "Movie Details: ",
+            ),
+            Container(
+              height: 190,
+              child: movie.when(
+                data: (data) {
+                  return Text(
+                    "Movie:${data.toString()}",
+                  );
+                },
+                loading: () => Center(
+                  child: CircularProgressIndicator(),
+                ),
+                error: (error, e) => Center(
+                  child: Text(error.toString()),
+                ),
+              ),
+            ),
+            Text(
+              ' ',
+              style: Theme.of(context).textTheme.headline4,
+            ),
             Text(
               "You have pushed the button this many times:",
             ),
@@ -103,7 +133,16 @@ class HomePage extends ConsumerWidget {
               onPressed: () {
                 ref.read(appThemeStateNotifier.notifier).toggleTheme();
               },
-            )
+            ),
+            InkWell(
+              child: Container(
+                child: Text('Get Movie'),
+              ),
+              onTap: () {
+                //final homeViewModel = ref.read(moviesViewModelProvider);
+                //homeViewModel.fetchNews();
+              },
+            ),
           ],
         ),
       ),

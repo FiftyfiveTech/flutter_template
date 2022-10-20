@@ -1,7 +1,6 @@
 name: domain
 description: A package responsible to act like a bridge between data and persentation layer, also contains business logic for app
 version: 0.0.1
-author:
 publish_to: 'none'
 
 environment:
@@ -15,10 +14,17 @@ dependencies:
     path: '../core'
   data:
     path: '../data'
+  freezed_annotation: ^2.2.0
+  json_annotation: ^4.7.0
+  riverpod: ^2.0.2
+  
 
 dev_dependencies:
+  build_runner: ^2.3.0
   flutter_test:
     sdk: flutter
+  freezed: ^2.2.0
+  json_serializable: ^6.5.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

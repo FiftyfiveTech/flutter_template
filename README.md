@@ -25,9 +25,6 @@
 
 This project is a starting point for a Flutter application.
 
-*(explain about Combine Layered-Fearture Package architecture )*
-
-
 ## Architecture and Project structure
 This projects follows clean architecture, we adopted layered architecture, to obtain clear separation of concerns between different part of the systems.  The architecture is based on the combined layer first and feature first architecture approach. Following the layered first principles the project is generally devided to different modules: Data module, Domain module, Presentation module, and following feature first appraoch more modules can be added as plug & play whenever it is necessary. The project now also have a Core module for specific faetures like general error handling, themes and utilities, and a social sign in module. This archirecture design give freedom to define more modules without causing any side effects for future reusaibility and extensibility. 
 
