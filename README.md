@@ -40,7 +40,9 @@ Presentation layer contains the UI's and it's states. Providers are defined in t
 ### Adding/developing a new Feature to the boilerplate
 All the UI Widgets, Controller should be added to the presentation layer, that lies inside the lib folder under the main project structure. Business logic is handled in the domain layer, and all the data communication happens in the data layer.
 
+To add any new feature, start from defining a model in  domain layer under 'model' folder and create its reposiorty class containing the abstract methods in 'repository' folder in domain layer. Implement this repository in the data layer under 'repository' folder and call the currespoding services for data handling. All the business logic is handled in the domain layer under 'usecase' folder which binds the data layer and presentation layer. create a 'viewmodel' which contains the state of the UI. viewmodels uses providers and state notifiers to achive the result, accessing the business logic from usecases.  UI screen in Presentation is created under 'pages' folder reusuing the 'widgets' may be, all the actions and triggers are called from viewmodel from the UI.
 
+Each layer are independent module with clear separations, we used providers extensively to apply the dependency injection, to achieve the inversion of control priciples. 
 
 ## The project is structured in the following way:
 
@@ -61,7 +63,8 @@ All the UI Widgets, Controller should be added to the presentation layer, that l
 ├── domain
 |   ├── lib
 |   |  ├── model
-|   |  └─ services   
+|   |  └─ repository   
+|   |  └─ usecases   
 |
 |
 |
