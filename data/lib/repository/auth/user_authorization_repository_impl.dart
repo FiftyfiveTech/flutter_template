@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/error/failure.dart';
 import 'package:data/authorization_impl.dart';
-import 'package:domain/authorization.dart';
+import 'package:domain/repository/auth/user_auth_repository.dart';
 
 class UserAuthRepositoryImpl extends UserAuthRepository {
   final UserAuthService _service;

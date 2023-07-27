@@ -1,176 +1,99 @@
-# flutter_template
+# flutter boilerplate repository
+## _Code architecture followed by 55Tech developers._
 
-This is the template project having all required basic setup.
+[![N|Solid](https://www.fiftyfivetech.io/wp-content/uploads/2021/05/logo.png)](https://nodesource.com/products/nsolid)
 
-# Coding guidelines
+ ✨ This repository showing that how we are using clean code architecture, folder structure, and component reusability.✨
 
+## Features
 
-**1. Naming Guidelines**
-========================
-It is a good practice to write code in such a way
-that it should be self-explanatory. The variables and functions should
-be named based on the operations they are assigned for.
+- _**Functionality**_  : Work correctly, efficiently, and robustly.
+- _**Readability**_    : The primary audience for our code is other developers.
+-  _**Extensibility**_ : Well-designed code should be extensible as a building block for solving new problems.
+- _**Scalability**_    : The code that can scale along with the need of your business.
+- _**Testability**_    : Isolated and modularised code without dependencies, well testable at unit level.
 
--   **Packages**
--   Packages and source files should be named using *lowercase* letters
-    with an *underscore*. For example, a ‘test driver’ package should be
-    named ‘**test\_driver’** while a package for ‘dependency injection’
-    should be named **dependency\_injection**.
--   **Classes**
--   Classes, enums, and parameters should be named using *‘Upper Camel
-    Case’* letters *with no underscore* and where only the first letter
-    of the word is capitalized. For example:
+## Tech
 
-```
-class AuthViewModel {…}
-enum AuthStatus 
-{
-    success,
-    failed,
-    error
-}
-```
+- [Flutter](https://flutter.dev/) - an open source framework by Google for building beautiful, natively compiled, multi-platform applications from a single codebase.
+- [Riverpod](https://riverpod.dev/) - a reactive caching and data binding framework.
+- [Flutter Hooks](https://pub.dev/packages/flutter_hooks) - better lifecycle management and component (widget) reusability.
+- [Freezed](https://pub.dev/packages/freezed) -  code generator for data-classes/unions/pattern-matching/cloning.
+- [Flutter Lints](https://pub.dev/packages/flutter_lints) -  recommended set of lints for Flutter apps, packages, and plugins to encourage good coding practices.
 
-Also, the filename should be lowercase with an underscore. For example:
-`auth_view_model.dart`
+# Getting Started
 
--   **Methods & Variables**
--   Similar to classes, methods and variables
-    should also be named in camel case, but in Lower Camel Case. For
-    example:
+This project is a starting point for a Flutter application.
 
-```
-var userProfile;
+## Architecture and Project structure
+This projects follows clean architecture, we adopted layered architecture, to obtain clear separation of concerns between different part of the systems.  The architecture is based on the combined layer first and feature first architecture approach. Following the layered first principles the project is generally devided to different modules: Data module, Domain module, Presentation module, and following feature first appraoch more modules can be added as plug & play whenever it is necessary. The project now also have a Core module for specific faetures like general error handling, themes and utilities, and a social sign in module. This archirecture design give freedom to define more modules without causing any side effects for future reusaibility and extensibility. 
 
-AuthNotification authNotification;
+### Data Layer
+This layer contains all the repositories to communnicate with local db or REST API's according to the interest of communication. The networks calls are handled here and converted to models. Data layer is responsible for data caching if needed.
 
-void loadUserProfile() {
-    //TODO: write your code
-}
-```
+### Domain Layer
+Domain layer is present to abstract the complex business logics such as combination of various repository calls as well as different usecases that may be reused from various UI's. The services and usecases are defined in the domain layer.
 
-**2. Ordering Guidelines**
-==========================
+### Presentation Layer
+Presentation layer contains the UI's and it's states. Providers are defined in the presentation layer and it is separated from the UI managing the states. This is how the UI is separated free from the business implementation as well as stae management. 
 
-Ordering of every section is very important for differentiating the
-method, variable and property. Every section should be in order, and
-separated by an empty line.
+### Adding/developing a new Feature to the boilerplate
+All the UI Widgets, Controller should be added to the presentation layer, that lies inside the lib folder under the main project structure. Business logic is handled in the domain layer, and all the data communication happens in the data layer.
 
-Ordering guidelines for different class components are as follows:
+To add any new feature, start from defining a model in  domain layer under 'model' folder and create its reposiorty class containing the abstract methods in 'repository' folder in domain layer. Implement this repository in the data layer under 'repository' folder and call the currespoding services for data handling. All the business logic is handled in the domain layer under 'usecase' folder which binds the data layer and presentation layer. create a 'viewmodel' which contains the state of the UI. viewmodels uses providers and state notifiers to achive the result, accessing the business logic from usecases.  UI screen in Presentation is created under 'pages' folder reusuing the 'widgets' may be, all the actions and triggers are called from viewmodel from the UI.
 
--   **Order of class property**
-```
-public class myClass
-{
-#region Private Members
+Each layer are independent module with clear separations, we used providers extensively to apply the dependency injection, to achieve the inversion of control priciples. 
 
-#endregion
+## The project is structured in the following way:
 
-#region Public Properties
+~~~
+├── .git
+├── .gitignore
+├── android
+├── ios
+├── core
+├── data
+|  ├── lib
+|  |  ├── repository
+|  |  | ├── network
+|  |  | └─ local db 
+|  |  └─ firebase   
+|
+|
+├── domain
+|   ├── lib
+|   |  ├── model
+|   |  └─ repository   
+|   |  └─ usecases   
+|
+|
+|
+├── flutter_social_package
+├── lib
+|  ├── app
+|  ├── formatter
+|  ├── notification
+|  |  └── notification_manager.dart
+|  └─ main.dart   
+| 
+├── pubspec.yaml
+├── pubspec.lock
+└── README.md
 
-#endregion
+~~~
 
-#region Constructors
+*/lib* - contains the presentation layer, the UI widgets, state management with riverpod and its provider files.
 
-#endregion
+*/lib/pages* - Here we add the highlevel widgets that contains the entire page design with multiple reused widgets.
 
-#region Public Methods
+*/lib/widgets* - This folder contains the micro level base widgets that can be tested independently and reused across the application. If more then two pages need to use the any widget, then it should be moved to the widget folder.
 
-#endregion
-}
-```
-
-**Order of imports/export sections**
-
-** “dart:” imports must come before other imports.**
-
-```
-
-import ‘dart:async’;
-import ‘dart:html’;
-import ‘package:model/UserModel.dart’;
-import ‘package:network/HttpRequest.dart’
-```
-
-** “export:” should be after other imports.**
-
-```
-import ‘package:fft/src/appflow/app_coordinator.dart’;
-import ‘package:fft/src/appflow/main_flow/main_tab.dart’;
-import ‘package:fft/src/appflow/splash_screen.dart’;
-export ‘package:async/src/error.dart’;
-```
-
-**3. Formatting Guidelines**
-============================
-
-Formatting rules or guidelines are used when writing source code in Dart
-language. If programmers use good style for writing source code, it will
-improve source code readability and understandability, and conform to a
-standard style. This can help avoid introducing errors in the code.
-
--   **Format code using ‘*dartfmt’*
-    Code Formatting is uninteresting and particularly time-consuming
-    during refactoring. But we need not worry about it. Dart provides an
-    advanced automated code formatter called *dartfmt* that does the job
-    for you. Using dartfmt, you can remove the official whitespace.
--   **Make your code more formatter-friendly
--   **Usage of long
-    identifiers, deeply nested expressions, a mixture of different kinds
-    of operators, etc. makes it difficult to read (or understand) code
-    even after formatting. Code structure and naming should be as simple
-    as possible.
--   **Use 80 characters in a line
-    If you would like the code to be read in the format of a paragraph
-  or an essay, you need to write maximum of 80 characters in a line.
-  Otherwise your code is likely to be too wordy or could be a harder to
-  read.
-
-Methods shouldn’t have more than an average of 30 code lines, excluding
-line spaces and comments.
-
-**4. Practice Coding** 
-======================
-
-We can learn and practice programming by following a few rules, as
-mentioned below:
+*/assets* - Saving images, files etc in src directory is a good solution and it is oftentimes encouraged to use instead of the static file serving. You need to store images in /assets folder.
 
 
--   **Return ‘Widget**
-We can return *Widget* instead of Flutter Widget. As your project
-evolves, you may change the widget type that is returned by your
-function. Let us take an example: you may prefer to wrap your widget
-with *Center()*. \ By returning a widget, refactoring is simplified,
-since the method signature does not change.\ For Example:
+## License
 
-```
-Widget returnContainerWidget()
-{
-	return Center(child: Container());
-}
-```
+**55 Tech**
 
--   **Boolean**
-We can use the null check operator ‘??’ to *convert null to a boolean
-value*. We must convert the null value to either *true* or *false*. \
-Although you could do this using ‘==’, using the ‘??’ operator instead
-is easier to use, and reduces lines of code used.\ For example:
-
-```
-userProfile?.isEnabled ?? false;
-```
-
--   **Use async/await**
-For raw future functions, use *aync/await*. Any function you want to run
-asynchronously must have the **async**modifier added to it. When you are
-adding the ***await***modifier, the code is explicitly saying: “*don’t
-go further until my future is completed*”.\ For example:
-
-```
-function () async
-{
-	var data = await loadData();// Do something…
-}
-```
-
+**We are relentlessly focusing on digital transformation. Dive deep into the customer cases to know more about the project which we delivered.**
 
